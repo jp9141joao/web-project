@@ -68,9 +68,9 @@ Abra o repositório no seu editor favorito e navegue pelas pastas `frontend` e `
 
 ### Demonstrativo do Projeto
 
-![screenshot1](../assets/image1.png);
-![screenshot2](../assets/image2.png);
-![screenshot3](../assets/image3.png);
+![screenshot1](./assets/image1.png);
+![screenshot2](./assets/image2.png);
+![screenshot3](./assets/image3.png);
 
 ## Notas
 Para mais detalhes sobre o projeto, consulte os arquivos README nas pastas **frontend** e **backend**.
