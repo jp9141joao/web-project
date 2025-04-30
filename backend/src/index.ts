@@ -7,7 +7,7 @@ const porta = process.env.PORT || 3000; // Define a porta do servidor caso ela n
 
 // Lista de origens permitidas para acessar a API.
 const allowedOrigins = [
-  'https://rick-and-morty-api-jp9141joao.netlify.app',
+  'https://web-project-jp.netlify.app',
 ];
 
 app.use(cors({
