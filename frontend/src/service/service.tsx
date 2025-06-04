@@ -1,82 +1,81 @@
-import { Info, Login, Usuario } from "@/types/types";  // Importa os tipos de Login, Usuario e Info.
-import axios from 'axios';  // Importa o axios para fazer requisições HTTP.
+import { Info, Login, User } from "@/types/types";  // Imports the Login, User, and Info types.
+import axios from 'axios';  // Imports axios to make HTTP requests.
 
-const url = 'https://web-project-sj2j.onrender.com';  // Define a URL do servidor de backend que vai receber as requisições.
+const url = 'https://web-project-sj2j.onrender.com';  // Defines the backend server URL that will receive the requests.
 
-// Função para autenticar o usuário e retornar o token JWT.
-export const autentica = async (login: Login) => {
-    
-    // Verifica se o parâmetro login foi passado
-    if (!login) {
-        throw new Error("Erro: O parâmetro login não está definido!");  // Se não, lança um erro
-    }
+// Function to authenticate the user and return the JWT token.
+export const authenticate = async (login: Login) => {
+  // Checks if the login parameter was provided.
+  if (!login) {
+    throw new Error("Error: The login parameter is not defined!");  // If not, throw an error.
+  }
 
-    // Envia uma requisição POST para a rota '/entrar', passando os dados do login
-    const response = await axios.post(`${url}/entrar`, login);
+  // Sends a POST request to the '/entrar' route, passing the login data.
+  const response = await axios.post(`${url}/entrar`, login);
 
-    // Retorna o token jwt caso a requisição for bem sucedida ou um erro que será interpretado e exibido pelo toast do frontend.
-    return response.data;
-}
-
-// Função para cadastrar um novo usuário.
-export const cadastrar = async (usuario: Usuario) => {
-    // Verifica se o parâmetro usuario foi passado
-    if (!usuario) {
-        throw new Error("Erro: O parâmetro usuario não está definido!");  // Se não, lança um erro
-    }
-
-    // Envia uma requisição POST para a rota '/cadastrar', passando os dados do usuário
-    const response = await axios.post(`${url}/cadastrar`, usuario);
-
-    // Retorna a mensagem de sucesso caso a requisição for bem sucedida ou um erro que será interpretado e exibido pelo toast do frontend.
-    return response.data;
+  // Returns the JWT token if the request is successful, or an error that will be handled and shown by the frontend toast.
+  return response.data;
 };
 
-// Função para obter os dados do usuário logado
-export const getUsuario = async () => {
-    // Tenta obter o token de autenticação armazenado no localStorage
-    const token = localStorage.getItem("authToken");
+// Function to register a new user.
+export const register = async (user: User) => {
+  // Checks if the user parameter was provided.
+  if (!user) {
+    throw new Error("Error: The user parameter is not defined!");  // If not, throw an error.
+  }
 
-    // Se o token não for encontrado, lança um erro
-    if (!token) {
-        throw new Error("Erro: O token não está definido!");
-    }
+  // Sends a POST request to the '/cadastrar' route, passing the user data.
+  const response = await axios.post(`${url}/cadastrar`, user);
 
-    // Envia uma requisição GET para a rota '/central', passando o token no cabeçalho de autorização
-    const response = await axios.get(`${url}/central`, {
-        headers: {
-            // Adiciona o token no cabeçalho da requisição para autenticação
-            'Authorization': `Bearer ${token}`,  
-        },
-    });
-
-    // Retorna os dados do usuario caso a requisição for bem sucedida ou um erro que será interpretado e exibido pelo toast do frontend.
-    return response.data;
+  // Returns a success message if the request is successful, or an error that will be handled and shown by the frontend toast.
+  return response.data;
 };
 
-// Função para atualizar as informações do usuário
-export const mudarInfo = async (info: Info) => {
-    // Tenta obter o token de autenticação armazenado no localStorage
-    const token = localStorage.getItem("authToken");
+// Function to get the data of the logged-in user.
+export const getUser = async () => {
+  // Attempts to get the authentication token stored in localStorage.
+  const token = localStorage.getItem("authToken");
 
-    // Se o token não for encontrado, lança um erro
-    if (!token) {
-        throw new Error("Erro: O token não está definido!");
-    }
+  // If the token is not found, throw an error.
+  if (!token) {
+    throw new Error("Error: The token is not defined!");
+  }
 
-    // Verifica se o parâmetro info foi passado
-    if (!info) {
-        throw new Error("Erro: O parâmetro info não está definido!");  
-    }
+  // Sends a GET request to the '/central' route, including the token in the Authorization header.
+  const response = await axios.get(`${url}/central`, {
+    headers: {
+      // Adds the token to the request header for authentication.
+      'Authorization': `Bearer ${token}`,
+    },
+  });
 
-    // Envia uma requisição PUT para a rota '/central', passando as novas informações no corpo da requisição
-    const response = await axios.put(`${url}/central`, info, {
-        // Adiciona o token no cabeçalho da requisição para autenticação
-        headers: {
-            'Authorization': `Bearer ${token}`,  
-        }
-    });
+  // Returns the user data if the request is successful, or an error that will be handled and shown by the frontend toast.
+  return response.data;
+};
 
-    // Retorna a mensagem de sucesso caso a requisição for bem sucedida ou um erro que será interpretado e exibido pelo toast do frontend.
-    return response.data;
+// Function to update the user's information.
+export const updateInfo = async (info: Info) => {
+  // Attempts to get the authentication token stored in localStorage.
+  const token = localStorage.getItem("authToken");
+
+  // If the token is not found, throw an error.
+  if (!token) {
+    throw new Error("Error: The token is not defined!");
+  }
+
+  // Checks if the info parameter was provided.
+  if (!info) {
+    throw new Error("Error: The info parameter is not defined!");
+  }
+
+  // Sends a PUT request to the '/central' route, passing the new information in the request body.
+  const response = await axios.put(`${url}/central`, info, {
+    // Adds the token to the request header for authentication.
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  });
+
+  // Returns a success message if the request is successful, or an error that will be handled and shown by the frontend toast.
+  return response.data;
 };

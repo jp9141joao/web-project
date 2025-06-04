@@ -1,37 +1,37 @@
-import express from 'express'; // Importa o Express para criar o servidor.
-import cors from 'cors'; // Importa o middleware CORS para controlar quem pode acessar a API.
-import { routes } from './routes'; // Importa as rotas definidas em outro arquivo.
+import express from 'express'; // Imports Express to create the server.
+import cors from 'cors'; // Imports the CORS middleware to control who can access the API.
+import { routes } from './routes'; // Imports the routes defined in another file.
 
-const app = express(); // Cria uma instancia do Express.
-const porta = process.env.PORT || 3000; // Define a porta do servidor caso ela nao exista define por padrao a 3000.
+const app = express(); // Creates an instance of Express.
+const port = process.env.PORT || 3000; // Defines the server port; if it doesn't exist, defaults to 3000.
 
-// Lista de origens permitidas para acessar a API.
+// List of allowed origins to access the API.
 const allowedOrigins = [
   'https://web-project-jp.netlify.app',
 ];
 
 app.use(cors({
   origin: function(origin, callback) {
-    // Se não houver origem, permite o acesso.
+    // If there is no origin, allow access.
     if (!origin) return callback(null, true);
 
-    // Se a origem não estiver na lista de permitidos, retorna um erro.
+    // If the origin is not in the allowed list, return an error.
     if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'A política CORS do servidor não permite acesso a partir desta origem.';
+      const msg = 'Server CORS policy does not allow access from this origin.';
       return callback(new Error(msg), false);
     }
 
-    // Se a origem estiver permitida, permite o acesso
+    // If the origin is allowed, allow access.
     return callback(null, true);
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP que podem ser usados.
-  allowedHeaders: ['Content-Type', 'Authorization'] // Cabecalhos permitidos nas requisicaes.
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // HTTP methods that can be used.
+  allowedHeaders: ['Content-Type', 'Authorization'] // Headers allowed in requests.
 }));
 
-app.use(express.json()); // Faz o Express entender o JSON enviado no corpo das requisições.
-app.use(routes); // Usa as rotas importadas para responder às requisições.
+app.use(express.json()); // Makes Express understand JSON sent in request bodies.
+app.use(routes); // Uses the imported routes to handle incoming requests.
 
-// Inicia o servidor na porta definida e exibe uma mensagem no console.
-app.listen(porta, () => {
-  console.log(`Server running on port ${porta}`);
+// Starts the server on the defined port and logs a message to the console.
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });

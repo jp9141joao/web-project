@@ -1,22 +1,21 @@
-// Define o tipo Login para ser utilizado na funcao autentica do controller.
+// Defines the Login type to be used in the authenticate function in the controller.
 export type Login = {
-    email: string, 
-    senha: string  
-}
-  
-// Define o tipo CriarConta para ser utilizado na funcao criarConta do controller.
-export type CriarConta = {
-    nome: string, 
-    email: string, 
-    senha: string 
-} 
-  
-// Define o tipo AlterarInfo para ser utilizado na funcao alterarInfo do controller.
-export type AlterarInfo = {
-    nome?: string,  
-    email?: string,  
-    senha?: string,   
-    novaSenha?: string, 
-    operacao: string  
-}
-  
+    email: string;
+    password: string;
+};
+
+// Defines the CreateAccount type to be used in the createAccount function in the controller.
+export type CreateAccount = {
+    name: string;
+    email: string;
+    password: string;
+};
+
+// Defines the UpdateInfo type to be used in the updateInfo function in the controller.
+export type UpdateInfo = {
+    name?: string;
+    email?: string;
+    password?: string;
+    newPassword?: string;
+    operation: string;
+};

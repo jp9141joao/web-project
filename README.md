@@ -1,76 +1,77 @@
 # Rick and Morty API
 
-O projeto **Rick and Morty API** integra uma interface frontend moderna com um backend robusto, permitindo a exploração dos personagens da série e oferecendo funcionalidades completas de autenticação e gerenciamento de usuários.
+The **Rick and Morty API** project integrates a modern frontend interface with a robust backend, allowing exploration of the series’ characters and offering full user authentication and management features.
 
-## Visão Geral
+## Overview
 
-- **Frontend:**  
-  Desenvolvido com React, TypeScript e Tailwind CSS, o frontend é uma SPA que exibe informações dos personagens (nome, localização, espécie, gênero, etc.) e permite que o usuário se cadastre, faça login e atualize seus dados.
+* **Frontend:**
+  Developed with React, TypeScript, and Tailwind CSS, the frontend is an SPA that displays character information (name, location, species, gender, etc.) and allows users to register, log in, and update their data.
 
-- **Backend:**  
-  Construído com Express e TypeScript, o backend utiliza o Prisma como ORM para interagir com um banco de dados PostgreSQL. A aplicação implementa autenticação via JWT, validação de dados e operações de CRUD para usuários.
+* **Backend:**
+  Built with Express and TypeScript, the backend uses Prisma as an ORM to interact with a PostgreSQL database. The application implements JWT-based authentication, data validation, and CRUD operations for users.
 
-## Acesso via Web
+## Web Access
 
-Você pode acessar o projeto hospedado através do seguinte link:  
+You can access the hosted project via the following link:
 [https://rick-and-morty-api-jp9141joao.netlify.app/inicio](https://rick-and-morty-api-jp9141joao.netlify.app/inicio)
 
-*Observação:* Como os serviços de deploy utilizados são gratuitos, pode ocorrer um tempo maior de resposta nas requisições ao backend.
+> **Note:** Since the deployment services used are free, there may be longer response times for backend requests.
 
-## Funcionalidades Principais
+## Main Features
 
-- **Autenticação e Autorização:**  
-  Implementação de autenticação com JWT e middlewares para proteção de rotas sensíveis.
+* **Authentication and Authorization:**
+  JWT-based authentication implementation with middleware to protect sensitive routes.
 
-- **Gerenciamento de Usuários:**  
-  Endpoints para criação de conta, login, obtenção de dados do usuário e atualização de informações (dados pessoais e senha).
+* **User Management:**
+  Endpoints for account creation, login, fetching user data, and updating information (personal data and password).
 
-- **Integração com API Externa:**  
-  O frontend consome dados da [Rick and Morty API](https://rickandmortyapi.com/) para exibir informações atualizadas dos personagens.
+* **Integration with External API:**
+  The frontend consumes data from the [Rick and Morty API](https://rickandmortyapi.com/) to display up-to-date character information.
 
-## Estrutura do Projeto
+## Project Structure
 
-A organização do repositório é a seguinte:
+The repository is organized as follows:
 
 ```
 rick-and-morty-api/
-├── frontend/   # Interface do usuário (SPA)
-└── backend/    # Servidor API (Express, Prisma)
+├── frontend/   # User interface (SPA)
+└── backend/    # API server (Express, Prisma)
 ```
 
-Cada pasta possui seu próprio README detalhado com instruções específicas de instalação, configuração e execução.
+Each folder contains its own detailed README with specific installation, configuration, and execution instructions.
 
-## Acessando os READMEs Internos
+## Accessing the Internal READMEs
 
-Para visualizar os detalhes técnicos e as instruções de uso para cada parte do projeto, você pode acessar os READMEs diretamente pelo terminal ou pelo seu editor de código.
+To view the technical details and usage instructions for each part of the project, you can access the READMEs directly via the terminal or your code editor.
 
-### Pelo Terminal
+### Via Terminal
 
-1. **Frontend:**  
-   Navegue até a pasta `frontend` e leia o README:
+1. **Frontend:**
+   Navigate to the `frontend` folder and read the README:
 
    ```bash
    cd frontend
    cat README.md
    ```
 
-2. **Backend:**  
-   Navegue até a pasta `backend` e leia o README:
+2. **Backend:**
+   Navigate to the `backend` folder and read the README:
 
    ```bash
    cd backend
    cat README.md
    ```
 
-### Pelo Editor de Código
+### Via Code Editor
 
-Abra o repositório no seu editor favorito e navegue pelas pastas `frontend` e `backend` para visualizar os respectivos arquivos `README.md`.
+Open the repository in your favorite editor and navigate to the `frontend` and `backend` folders to view their respective `README.md` files.
 
-### Demonstrativo do Projeto
+### Project Demo
 
-![screenshot1](./assets/image1.png);
-![screenshot2](./assets/image2.png);
-![screenshot3](./assets/image3.png);
+![screenshot1](./assets/image1.png)
+![screenshot2](./assets/image2.png)
+![screenshot3](./assets/image3.png)
 
-## Notas
-Para mais detalhes sobre o projeto, consulte os arquivos README nas pastas **frontend** e **backend**.
+## Notes
+
+For more details about the project, consult the README files in the **frontend** and **backend** folders.

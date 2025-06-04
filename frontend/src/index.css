@@ -68,12 +68,20 @@
 }
 
 @layer utilities {
+  /* 
+    .text-p-responsive: 
+    Applies different font sizes at various screen breakpoints.
+  */
   .text-p-responsive {
-    @apply text-sm xxs:text-base xs:text-sm sm:text-base lg:text-sm xl:text-lg
+    @apply 
+      text-sm      /* Default font size: small (for very small screens) */
+      xxs:text-base /* Extra-extra-small screens: base font size */
+      xs:text-sm    /* Extra-small screens: small font size */
+      sm:text-base  /* Small screens and up: base font size */
+      lg:text-sm    /* Large screens and up: small font size */
+      xl:text-lg;   /* Extra-large screens and up: large font size */
   }
 }
-
-
 
 @layer base {
   * {

@@ -12,24 +12,24 @@ const buttonVariants = cva(
         default:
           "bg-gradient-to-tr from-[#1a9f9a] to-[#b6c937] text-primary-foreground shadow-lg hover:from-[#178681] hover:to-[#9cb12f]",
           /* 
-            bg-gradient-to-tr: Define um fundo com gradiente que se direciona para o canto superior direito.
-            from-[#1a9f9a]: Define a cor de início do gradiente com um tom azulado.
-            to-[#b6c937]: Define a cor final do gradiente com um tom esverdeado.
-            shadow-lg: Aplica uma sombra maior oque dá uma profundidade maior ao componente e combina melhor com o gradiente.
-            hover:from-[#178681]: Quando o usuário passa o mouse sobre o elemento, a cor de início do gradiente muda para um tom mais escuro do azul.
-            hover:to-[#9cb12f]: Quando o usuário passa o mouse sobre o elemento, a cor final do gradiente muda para um tom mais escuro do verde.
+            bg-gradient-to-tr: Sets a background with a gradient directed toward the top right corner.
+            from-[#1a9f9a]: Sets the starting color of the gradient with a bluish tone.
+            to-[#b6c937]: Sets the ending color of the gradient with a greenish tone.
+            shadow-lg: Applies a large shadow for deeper visual impact, matching the gradient nicely.
+            hover:from-[#178681]: When the user hovers over the element, the gradient start color changes to a darker blue.
+            hover:to-[#9cb12f]: When the user hovers over the element, the gradient end color changes to a darker green.
           */
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
           "rounded-md border-2 border-[#bfbfbf] bg-transparent px-3 py-1 text-sm hover:bg-gray-200 hover:border-[#707070]",
           /*
-            border-2: Aplica uma borda com largura de 2 ao elemento.
-            border-[#bfbfbf]: Define a cor da borda com tom de cinza.
-            px-3: Adiciona um padding na direita e esquerda de tamanho 3.
-            py-1: Adiciona um padding em cima e embaixo de tamanho 1.
-            hover:bg-gray-200: Ao passar o mouse sobre o elemento, o fundo muda para tom um cinza claro.
-            hover:border-[#707070]: Ao passar o mouse, a cor da borda muda para um tom de cinza escuro.
+            border-2: Applies a border with a width of 2.
+            border-[#bfbfbf]: Sets the border color to a gray tone.
+            px-3: Adds horizontal padding of size 3.
+            py-1: Adds vertical padding of size 1.
+            hover:bg-gray-200: On hover, the background changes to a light gray.
+            hover:border-[#707070]: On hover, the border color changes to a darker gray tone.
           */
         secondary:
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
@@ -42,8 +42,8 @@ const buttonVariants = cva(
         lg: "h-10 rounded-md px-8",
         xl: "h-10 rounded-md px-12",
         /*
-          xl: define um novo tamanho ao botão
-          px-12: Adiciona um padding na direita e esquerda de tamanho 12.
+          xl: Defines a new size for the button.
+          px-12: Adds horizontal padding of size 12.
         */
         icon: "h-9 w-9",
       },

@@ -1,44 +1,44 @@
-// Define o tipo Login utilizado para chamar a função autentica.
+// Defines the Login type used to call the authenticate function.
 export type Login = {
-    email: string,
-    senha: string
+  email: string;
+  password: string;
 }
 
-// Define o tipo Usuario utilizado para chamar a função cadastrar.
-export type Usuario = {
-    nome: string,
-    email: string,
-    senha: string
+// Defines the User type used to call the register function.
+export type User = {
+  fullName: string;
+  email: string;
+  password: string;
 }
 
-// Define o tipo Personagem utilizado no useState para armazenar os personagens retornados pela API.
-export type Personagem = {
-    id: string, 
-    nome: string,
-    status: string,
-    especie: string,
-    genero: string,
-    localizacao: string,
-    imagem: string
+// Defines the Character type used in useState to store characters returned by the API.
+export type Character = {
+  id: string;
+  name: string;
+  status: string;
+  species: string;
+  gender: string;
+  location: string;
+  image: string;
 }
 
-// Define o tipo Info utilizado para chamar a função mudarInfo.
+// Defines the Info type used to call the Info function.
 export type Info = {
-    nome?: string,
-    email?: string,
-    senha?: string,
-    novaSenha?: string
-    operacao: string
+  name?: string;
+  email?: string;
+  password?: string;
+  newPassword?: string;
+  operation: string;
 }
 
-// Define o tipo Filtro utilizado para filtrar os personagem renderizados.
-export type Filtro = {
-    por: string,
-    valor: string 
+// Defines the Filter type used to filter the rendered characters.
+export type Filter = {
+  by: string;
+  value: string;
 }
 
-// Define o tipo Navegação utilizado para navegar entre as paginas da API e retornar um erro caso seja null.
-export type Navegacao = {
-    voltar: string | null,
-    proximo: string | null
+// Defines the Navigation type used to navigate between API pages and return an error if null.
+export type Navigation = {
+  previous: string | null;
+  next: string | null;
 }

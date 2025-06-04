@@ -19,93 +19,87 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type,
 });
 Input.displayName = "Input";
 
-// O componente <InputIntegrado> é um input customizado que possui as mesmas propriedades do componente <Input>
-// porém com umas pequenas modificacoes.
-const InputIntegrado = React.forwardRef<HTMLInputElement, InputProps>(
+// The <IntegratedInput> component is a custom input that has the same properties as <Input>
+// but with some small adjustments.
+const IntegratedInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
     return (
       <input
         type={type}
         /*
-          rounded-l-md: Arredonda os cantos da esquerda com um raio médio.
-          border-t-2: Define a espessura da borda superior como 2px.
-          border-b-2: Define a espessura da borda inferior como 2px.
-          border-l-2: Define a espessura da borda esquerda como 2px.
-          border-r-1: Define a espessura da borda direita como 1px.
-          border-[#bfbfbf]: Define a cor da borda como o tom de cinza.
-          focus:border-[#707070]: Ao receber foco, a cor da borda muda para um tom de cinza escuro.
-          hover:border-[#707070]: Ao passar o mouse sobre o elemento, a cor da borda muda para um tom de cinza escuro.
+          rounded-l-md: Rounds the left corners with medium radius.
+          border-t-2: Sets the top border thickness to 2px.
+          border-b-2: Sets the bottom border thickness to 2px.
+          border-l-2: Sets the left border thickness to 2px.
+          border-r-1: Sets the right border thickness to 1px.
+          border-[#bfbfbf]: Sets border color to a shade of gray.
+          focus:border-[#707070]: On focus, border color changes to darker gray.
+          hover:border-[#707070]: On hover, border color changes to darker gray.
         */
         className={cn(
           "flex h-10 w-full border rounded-l-md border-t-2 border-b-2 border-l-2 border-r-1 border-[#bfbfbf] bg-transparent px-3 py-1 xxs5:px-3 xxs5:py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none hover:border-[#707070] disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
         ref={ref}
-        {...props} 
+        {...props}
       />
     );
   }
 );
-// Define o displayName do componente para facilitar a identificação em ferramentas de desenvolvimento.
-InputIntegrado.displayName = "InputIntegrado";
+// Sets the component's displayName to make it easier to identify in dev tools.
+IntegratedInput.displayName = "IntegratedInput";
 
 
-// O componente <InputSenha> é um input especializado para senhas, que permite alternar a visibilidade do conteúdo.
-const InputSenha = React.forwardRef<HTMLInputElement, InputProps>(
+// The <PasswordInput> component is a specialized input for passwords,
+// allowing toggling the visibility of the content.
+const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {
-    // Cria um estado "show" para controlar se a senha será exibida ou ocultada.
+    // Creates a state "show" to control if the password is visible or hidden.
     const [show, setShow] = React.useState<boolean>(true);
 
     return (
-      // Integra o componente <InputIntegrado> ao Button, o design de cada um está ajustado para parecer que ambos 
-      // os componentes juntos aparentam ser um só.
+      // Combines <IntegratedInput> with a Button, styled to look like a single element.
       <div className="flex w-full select-none">
-        {/* 
-            Renderiza o <InputIntegrado> reutilizando seus estilos.
-            O tipo do input é definido condicionalmente: "text" se "show" for true, ou "password" caso contrário.
-            O placeholder também muda conforme o estado para dar uma dica visual ao usuário. 
+        {/*
+          Renders <IntegratedInput> reusing its styles.
+          Input type is conditionally defined: "text" if "show" is true, otherwise "password".
+          The placeholder also changes based on the state to give the user a visual hint.
         */}
-        <InputIntegrado
-          className={className} // Permite passar classes customizadas.
-          type={show ? "text" : "password"} // Alterna o tipo do input conforme o estado "show".
-          placeholder={show ? "Abc1234#" : "********"} // Alterna o valor do placeholder conforme o estado "show".
-          ref={ref} // Encaminha a ref para o InputIntegrado.
-          {...props} // Espalha demais propriedades para o input.
+        <IntegratedInput
+          className={className}
+          type={show ? "text" : "password"}
+          placeholder={show ? "Abc1234#" : "********"}
+          ref={ref}
+          {...props}
         />
         {/*
-          grid: Define o elemento como um contêiner de grid, permitindo o posicionamento flexível dos itens internos.
-          place-items-center: Centraliza os itens tanto vertical quanto horizontalmente dentro do contêiner de grid.
-          items-center: Alinha os itens verticalmente ao centro.
-          text-[#bfbfbf]: Define a cor do texto como um tom de cinza claro.
-          hover:text-[#707070]: Ao passar o mouse sobre o elemento, a cor do texto muda para um tom de cinza mais escuro.
-          h-10: Define a altura do elemento de 10.
-          border: Adiciona uma borda ao redor do elemento.
-          rounded-r-md: Arredonda os cantos da direita com um raio médio.
-          rounded-l-none: Remove qualquer arredondamento nos cantos da esquerda.
-          border-t-2: Define a espessura da borda superior como 2.
-          border-b-2: Define a espessura da borda inferior como 2.
-          border-r-2: Define a espessura da borda direita como 2.
-          border-l-1: Define a espessura da borda esquerda como 1.
-          border-[#bfbfbf]: Define a cor da borda como um tom de cinza claro.
-          hover:border-[#707070]: Ao passar o mouse sobre o elemento, a cor da borda muda para um tom de cinza escuro.
-          hover:border-r-2: Ao passar o mouse sobre o elemento, a borda direita recebe uma espessura de 2.
+          grid: Sets the element as a grid container.
+          place-items-center: Centers items both vertically and horizontally.
+          items-center: Vertically centers items.
+          text-[#bfbfbf]: Sets text color to light gray.
+          hover:text-[#707070]: On hover, changes text color to darker gray.
+          h-10: Sets height to 10.
+          border: Adds border to the element.
+          rounded-r-md: Rounds the right corners.
+          rounded-l-none: Removes rounding on the left corners.
+          border-t-2, border-b-2, border-r-2, border-l-1: Sets individual border thicknesses.
+          border-[#bfbfbf]: Sets border color to light gray.
+          hover:border-[#707070]: On hover, sets border color to darker gray.
+          hover:border-r-2: On hover, right border thickness becomes 2.
         */}
         <div
           className={cn(
             "grid place-items-center items-center text-[#bfbfbf] hover:text-[#707070] h-10 border rounded-r-md rounded-l-none border-t-2 border-b-2 border-r-2 border-l-1 border-[#bfbfbf] bg-transparent px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground hover:border-[#707070] hover:border-r-2 disabled:cursor-not-allowed disabled:opacity-50",
             className
           )}
-          // Ao clicar, alterna o estado "show" invertendo seu valor, de true para false e vice-versa.
+          // On click, toggles the "show" state between true and false.
           onClick={() => setShow(!show)}
         >
-          {/* 
-            Renderiza um ícone condicional:
-            Se "show" for true, exibe o componente <Eye> indicando o olho fechado.
-            Caso contrário, exibe o componente <EyeOff> indicando o olho aberto.
-            Ambos os ícones recebem classes para definir seu tamanho e responsividade. 
-            w-4: Define a largura de 4 para o elemento.
-            lg:w-5: Em telas maiores que 1024px, define a largura de 5 para o elemento.
-            h-auto: Define que a altura do elemento terá a mesma algura da largura.
+          {/*
+            Conditionally renders an icon:
+            If "show" is true, shows the <Eye> icon.
+            Otherwise, shows the <EyeOff> icon.
+            Both icons have classes for size and responsiveness.
           */}
           {
             show ? 
@@ -117,7 +111,7 @@ const InputSenha = React.forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
-// Define o displayName para facilitar a identificação do componente em ferramentas de desenvolvimento.
-InputSenha.displayName = "InputSenha";
+// Sets the displayName to make it easier to identify in dev tools.
+PasswordInput.displayName = "PasswordInput";
 
-export { Input, InputIntegrado, InputSenha};
+export { Input, IntegratedInput, PasswordInput };

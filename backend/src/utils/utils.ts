@@ -1,56 +1,56 @@
 export class Utils {
-    // Verifica se o valor existe, ou seja, não é undefined, null, vazio ou false
-    public static ValorExiste(valor: any): boolean {
-        return valor !== undefined && valor !== null && valor !== '' && valor !== false;
+    // Checks if the value exists, i.e., is not undefined, null, empty, or false
+    public static valueExists(value: any): boolean {
+        return value !== undefined && value !== null && value !== '' && value !== false;
     }    
     
-    // Checa se o email se o email e valido
-    public static EmailValido(email: any): boolean {
+    // Checks if the email is valid
+    public static validEmail(email: any): boolean {
         try {
-            // Define um padrão básico para emails como nome@exemplo.com.
-            const emailPadrao = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            // Verifica se o email bate com esse padrão e se e realmente uma string
-            return emailPadrao.test(email) && typeof email == 'string';
+            // Defines a basic pattern for emails like name@example.com.
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            // Tests if the email matches this pattern and is actually a string
+            return emailPattern.test(email) && typeof email === 'string';
         } catch {
-            // Se der algum erro, retorna false
+            // If an error occurs, return false
             return false;
         }
     }
 
-    // Valida se a senha se a senha e valida
-    public static SenhaValida(senha: any): boolean {
+    // Validates if the password is valid
+    public static validPassword(password: any): boolean {
         try {
-            // Define um padrão basico para senhas, pelo menos uma letra, um número,
-            // um caractere especiale e uma letra maiúscula, tambem e necessario ter no minimo 8 caracteres
-            const senhaPadrao = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*[A-Z]).{8,}$/;
-            // Testa se a senha atende ao padrão e se é uma string
-            return senhaPadrao.test(senha) && typeof senha == 'string';
+            // Defines a basic pattern for passwords: at least one letter, one number,
+            // one special character, and one uppercase letter, also requiring at least 8 characters
+            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*[A-Z]).{8,}$/;
+            // Tests if the password meets the pattern and is a string
+            return passwordPattern.test(password) && typeof password === 'string';
         } catch {
-            // Em caso de erro, retorna false
+            // In case of error, return false
             return false;
         }
     }
 
-    // Valida se o nome completo e valido
-    public static NomeValido(nome: any): boolean {
+    // Validates if the full name is valid
+    public static validName(name: any): boolean {
         try {
-            // Remove espaços extras e divide o nome nas partes.
-            const partes = nome.trim().split(/\s+/);
+            // Removes extra spaces and splits the name into parts.
+            const parts = name.trim().split(/\s+/);
     
-            // Se tiver menos de duas partes, o nome não é válido pois um 
-            // nome completo tem pelo menos dois nomes.
-            if (partes.length < 2) return false;
+            // If there are fewer than two parts, the name is not valid because
+            // a full name must have at least two names.
+            if (parts.length < 2) return false;
     
-            // Verifica cada parte para garantir que tem pelo menos 2 letras e só letras.
-            const valido = partes.every((part: any) => {
+            // Checks each part to ensure it has at least 2 letters and only letters.
+            const isValid = parts.every((part: any) => {
                 if (part.length < 2) return false;
                 return /^[a-zA-ZÀ-ÖØ-öø-ÿ'-]+$/.test(part);
             });
     
-            // Retorna true se todas as partes forem válidas e se o nome for uma string.
-            return valido && typeof nome == 'string';
+            // Returns true if all parts are valid and if the name is a string.
+            return isValid && typeof name === 'string';
         } catch {
-            // Se ocorrer algum erro, retorna false.
+            // If an error occurs, return false.
             return false;
         }
     }

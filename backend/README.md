@@ -1,120 +1,119 @@
 # Rick and Morty API - Backend
 
-Este é o servidor backend da aplicação Rick and Morty API, desenvolvido em TypeScript com Express e Prisma. Ele gerencia a autenticação, criação e atualização de usuários, além de fornecer as rotas para integração com o frontend.
+This is the backend server for the Rick and Morty API application, developed in TypeScript with Express and Prisma. It handles authentication, user creation, and updates, as well as providing the routes for integration with the frontend.
 
-## Tecnologias Utilizadas
+## Technologies Used
 
-- **Express** – Framework para criação do servidor web.
-- **TypeScript** – Linguagem com tipagem estática para maior robustez e manutenibilidade.
-- **Prisma** – ORM para interação com o banco de dados PostgreSQL.
-- **PostgreSQL** – Banco de dados relacional utilizado pela aplicação.
-- **JWT (jsonwebtoken)** – Para autenticação e geração de tokens.
-- **bcrypt / bcryptjs** – Para criptografia e verificação de senhas.
-- **dotenv** – Gerenciamento de variáveis de ambiente.
-- **cors** – Controle de acesso via CORS.
+* **Express** – Framework for building the web server.
+* **TypeScript** – Language with static typing for greater robustness and maintainability.
+* **Prisma** – ORM for interacting with the PostgreSQL database.
+* **PostgreSQL** – Relational database used by the application.
+* **JWT (jsonwebtoken)** – For authentication and token generation.
+* **bcrypt / bcryptjs** – For hashing and verifying passwords.
+* **dotenv** – Environment variable management.
+* **cors** – Cross-Origin Resource Sharing control.
 
-## Pré-requisitos
+## Prerequisites
 
-- [Node.js](https://nodejs.org/) (versão 14 ou superior)
-- [npm](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
+* [Node.js](https://nodejs.org/) (version 14 or higher)
+* [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
 
-Para verificar se o Node.js e o npm estão instalados, utilize os comandos:
+To check if Node.js and npm are installed, run:
 
 ```bash
-    node -v
-    npm -v
+node -v
+npm -v
 ```
 
-## Instalação
+## Installation
 
-1. **Clone o repositório**
-
-   ```bash
-    git clone https://github.com/jp9141joao/rick-and-morty-api.git
-   ```
-
-2. **Acesse a pasta do backend**
+1. **Clone the repository**
 
    ```bash
-    cd backend
+   git clone https://github.com/jp9141joao/rick-and-morty-api.git
    ```
 
-3. **Instale as dependências**
+2. **Navigate to the backend folder**
 
    ```bash
-    npm install
+   cd backend
    ```
 
-## Configuração
+3. **Install dependencies**
 
-- **Variáveis de Ambiente:**  
-  Copie o arquivo `.env.exp` para `.env` e configure as variáveis conforme sua necessidade. As variáveis necessarias são:
-  - `DATABASE_URL`: URL de conexão com o banco de dados PostgreSQL.
-  - `SECRET_KEY`: Chave secreta para assinatura dos tokens JWT.
+   ```bash
+   npm install
+   ```
 
-- **Origem das Requisições (CORS):**  
-  No arquivo `src/index.ts`, há uma lista de origens permitidas (`allowedOrigins`). Caso a origem do frontend mude ou a aplicação seja executada localmente, **lembre-se de atualizar essa lista** para permitir o acesso além de mudar o valor da variavel porta caso seja executado localmente.
+## Configuration
 
-## Estrutura do Projeto
+* **Environment Variables:**
+  Copy the `.env.exp` file to `.env` and configure the variables as needed. The required variables are:
 
-A estrutura do projeto está organizada da seguinte forma:
+  * `DATABASE_URL`: Connection URL for the PostgreSQL database.
+  * `SECRET_KEY`: Secret key for signing JWT tokens.
+
+* **Allowed Origins (CORS):**
+  In the `src/index.ts` file, there is a list of allowed origins (`allowedOrigins`). If the frontend origin changes or if you run the application locally, **remember to update this list** to allow access, as well as adjust the `PORT` variable if running locally.
+
+## Project Structure
 
 ```
 rick-and-morty-api/
 └── frontend/
     └── backend/
-        ├── dist/                   # Build da aplicação para produção
-        ├── node_modules/           # Dependências instaladas
-        ├── prisma/                 # Arquivos de configuração e migrations do Prisma
+        ├── dist/                   # Application build for production
+        ├── node_modules/           # Installed dependencies
+        ├── prisma/                 # Prisma configuration files and migrations
         ├── src/
-        │   ├── authMiddleWares/    # Middlewares de autenticação
+        │   ├── authMiddleWares/    # Authentication middlewares
         │   │   └── authMiddleWares.ts
-        │   ├── models/             # Modelos (ex.: http-result.ts)
-        │   ├── utils/              # Funções utilitárias (ex.: utils.ts)
-        │   ├── controller.ts       # Lógica de controle das operações (login, cadastro, etc.)
-        │   ├── index.ts            # Ponto de entrada da aplicação (configuração do servidor)
-        │   ├── request.ts          # Tipos e interfaces para requisições
-        │   └── routes.ts           # Definição das rotas da API
-        ├── .env.exp                # Exemplo de configuração de variáveis de ambiente
-        ├── .gitignore              # Arquivo para ignorar arquivos no controle de versão
-        ├── package-lock.json       # Lockfile do npm
-        ├── package.json            # Configurações do projeto e scripts
-        └── tsconfig.json           # Configuração do TypeScript
+        │   ├── models/             # Models (e.g., http-result.ts)
+        │   ├── utils/              # Utility functions (e.g., utils.ts)
+        │   ├── controller.ts       # Control logic for operations (login, registration, etc.)
+        │   ├── index.ts            # Application entry point (server configuration)
+        │   ├── request.ts          # Types and interfaces for requests
+        │   └── routes.ts           # API route definitions
+        ├── .env.exp                # Example environment variable configuration
+        ├── .gitignore              # Files to ignore in version control
+        ├── package-lock.json       # npm lockfile
+        ├── package.json            # Project configurations and scripts
+        └── tsconfig.json           # TypeScript configuration
 ```
 
-## Scripts Disponíveis
+## Available Scripts
 
-- **Desenvolvimento:**  
-  Inicie o servidor em modo de desenvolvimento com hot-reloading:
+* **Development:**
+  Start the server in development mode with hot-reloading:
 
   ```bash
   npm run dev
   ```
 
-- **Build para Produção:**  
-  Compile o projeto TypeScript para JavaScript:
+* **Build for Production:**
+  Compile the TypeScript project to JavaScript:
 
   ```bash
   npm run build
   ```
 
-- **Iniciar em Produção:**  
-  Após o build, inicie o servidor a partir dos arquivos compilados:
+* **Start in Production:**
+  After building, start the server from the compiled files:
 
   ```bash
-    npm start
+  npm start
   ```
 
-## Importante
+## Important
 
-- **.env:**  
-  Configure corretamente o arquivo `.env` com as variáveis `DATABASE_URL` e `SECRET_KEY`.
+* **.env:**
+  Make sure to configure the `.env` file correctly with the `DATABASE_URL` and `SECRET_KEY` variables.
 
-- **Allowed Origins:**  
-  No arquivo `src/index.ts`, verifique e, se necessário, altere o array `allowedOrigins` para refletir a origem do seu frontend, principalmente se estiver rodando o backend localmente.
+* **Allowed Origins:**
+  In `src/index.ts`, check and, if necessary, update the `allowedOrigins` array to reflect your frontend’s origin, especially if running the backend locally.
 
-- **Prisma:**  
-  Caso necessario utilize os comandos do prisma para gerar os modelos do banco de dados no prisma:
+* **Prisma:**
+  If needed, use the Prisma commands to generate the database models in the Prisma schema:
 
   ```bash
   cd prisma

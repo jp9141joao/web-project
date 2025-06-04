@@ -1,68 +1,75 @@
-// Importa os componentes necessários do react-router-dom para gerenciar o roteamento na aplicação.
-// Navigate: Permite redirecionar automaticamente para outra rota.
-// Route: Define uma rota individual.
-// BrowserRouter (renomeado como Router): Contêiner que habilita o roteamento baseado na URL.
-// Routes: Agrupa e gerencia as rotas definidas.
+// Import necessary components from react-router-dom to manage routing in the application.
+// Navigate: Allows automatic redirection to another route.
+// Route: Defines an individual route.
+// BrowserRouter (renamed as Router): Container that enables URL-based routing.
+// Routes: Groups and manages the defined routes.
 import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
-// Importa o arquivo global de estilos.
+// Import the global styles file.
 import './index.css'
 
-// Importa as páginas da aplicação.
-import Inicio from "./pages/inicio"; // Página inicial da aplicação.
-import Entrar from "./pages/entrar";  // Página de login.
-import Cadastrar from "./pages/cadastrar"; // Página de cadastro de usuário.
-import Central from "./pages/central"; // Página central (acessível apenas para usuários autenticados).
+// Import the application pages.
+// Home: Main page of the application.
+// Login: Login page.
+// Register: User registration page.
+// Dashboard: Dashboard page (accessible only to authenticated users).
+import Home from "./pages/home";
+import Login from "./pages/loginPage";
+import Register from "./pages/register";
+import Dashboard from "./pages/overview";
 
-// Importa o componente de rota protegida que impede o acesso a determinadas rotas sem autenticação.
-import { RotaProtegida } from "./components/RotaProtegida/rotaProtegida";
+// Import the protected route component, which prevents access to certain routes without authentication.
+import { ProtectedRoute } from "./components/ProtectedRote/protectedRote";
 
-// Importa a página de "Página Não Encontrada" para rotas inexistentes.
-import PaginaNaoEncontrada from "./pages/paginaNaoEncontrada";
+// Import the "Page Not Found" page for nonexistent routes.
+import PageNotFound from "./pages/pageNotFound";
 import { useEffect } from "react";
-import { VerificarToken } from "./components/VerificarToken/verificarToken";
+import { VerifyToken } from "./components/VerifyToken/verifyToken";
 
-// Função principal que define a estrutura de rotas da aplicação.
+// Main function that defines the application's route structure.
 function App() {
 
-  // Chama a função para verificar se o token é valido quando a pagina é renderizada.
+  // Calls the function to verify if the token is valid when the page is rendered.
   useEffect(() => {
-    VerificarToken();
+    VerifyToken();
   }, []);
 
   return (
-    // <Router>: habilita o roteamento baseado na URL.
+    // <Router>: enables URL-based routing.
     <Router>
-      {/* <Routes>: agrupa todas as rotas definidas na aplicação. */}
+      {/* <Routes>: groups all routes defined in the application. */}
       <Routes>
-        {/* Renderiza a página de "Página Não Encontrada" para qualquer rota não definida. */}
-        <Route path='*' element={ <PaginaNaoEncontrada /> } />
+        {/* Renders the "Page Not Found" component for any undefined route. */}
+        <Route path="*" element={ <PageNotFound /> } />
         
-        {/* Rota raiz: Redireciona automaticamente de "/" para "/inicio". */}
-        <Route path="/" element={ <Navigate to={'/inicio'} /> } />
+        {/* Root route: Automatically redirects from "/" to "/home". */}
+        <Route path="/" element={ <Navigate to={'/home'} /> } />
         
-        {/* Rota para a página inicial */}
-        <Route path="/inicio" element={ <Inicio/> } />
+        {/* Route for the home page */}
+        <Route path="/home" element={ <Home /> } />
         
-        {/* Rota para a página de login */}
-        <Route path="/entrar" element={ <Entrar /> } />
+        {/* Route for the login page */}
+        <Route path="/login" element={ <Login /> } />
         
-        {/* Rota para a página de cadastro */}
-        <Route path="/cadastrar" element={ <Cadastrar /> } />
+        {/* Route for the registration page */}
+        <Route path="/register" element={ <Register /> } />
         
-        {/* 
-          Rota protegida para a página central: Apenas acessível se o usuário estiver autenticado.
-          <RotaProtegida>: verifica a autenticação, caso esteja autenticado entao renderiza o componente <Central>. 
+        {/*
+          Protected route for the dashboard page: Only accessible if the user is authenticated.
+          <ProtectedRoute>: checks authentication; if authenticated, renders the <Dashboard> component.
         */}
-        <Route path="/central" element={ 
-            <RotaProtegida>
-              <Central />
-            </RotaProtegida>
-        } />
+        <Route 
+          path="/dashboard" 
+          element={ 
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
       </Routes>
     </Router>
-  )
+  );
 }
 
-// Exporta o componente App como padrão para ser utilizado na renderização da aplicação.
+// Exports the App component as default to be used for rendering the application.
 export default App;

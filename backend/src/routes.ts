@@ -1,20 +1,20 @@
-import { Router } from "express"; // Traz o Router do Express para definir as rotas da aplicação
-import { authMiddleware } from "./middlewares/authMiddleware"; // Importa o middleware que verifica se o usuário está autenticado
-import { alterarInfo, autentica, criarConta, getUsuario } from "./controller"; // Importa as funções que vão lidar com as operações de usuário
+import { Router } from "express"; // Brings Express’s Router to define the application’s routes
+import { authMiddleware } from "./middlewares/authMiddleware"; // Imports the middleware that checks if the user is authenticated
+import { updateInfo, authenticate, createAccount, getUser } from "./controller"; // Imports the functions that will handle user operations
 
-const routes = Router(); // Cria um novo objeto de rotas
+const routes = Router(); // Creates a new routes object
 
-// Chama a função autentica quando alguém envia um POST para a rota "/entrar".
-routes.post('/entrar', autentica);
-// Chama a funcao criarConta quando envia um POST para a rota "/cadastrar".
-routes.post('/cadastrar', criarConta);
+// Calls the authenticate function when someone sends a POST to the "/enter" route.
+routes.post('/enter', authenticate);
+// Calls the createAccount function when someone sends a POST to the "/register" route.
+routes.post('/register', createAccount);
 
-// Chama a função getUsuario quando alguém envia um GET para a rota "/central".
-// Antes de chamar getUsuario, passa pelo authMiddleware para checar se o token é válido.
-routes.get('/central', authMiddleware, getUsuario);
+// Calls the getUser function when someone sends a GET to the "/central" route.
+// Before calling getUser, it passes through authMiddleware to check if the token is valid.
+routes.get('/central', authMiddleware, getUser);
 
-// Chama a função alterarInfo quando alguém envia um PUT para a rota "/central".
-// Também usa o authMiddleware para garantir que o usuário esteja autenticado antes de alterar os dados.
-routes.put('/central', authMiddleware, alterarInfo);
+// Calls the updateInfo function when someone sends a PUT to the "/central" route.
+// Also uses authMiddleware to ensure the user is authenticated before updating data.
+routes.put('/central', authMiddleware, updateInfo);
 
-export { routes }; // Exporta as rotas para que possam ser usadas em outros lugares da aplicação
+export { routes }; // Exports the routes so they can be used elsewhere in the application

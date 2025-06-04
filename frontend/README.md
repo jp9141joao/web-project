@@ -1,105 +1,105 @@
 # Rick and Morty API - Frontend
 
-Este projeto é a interface frontend para a aplicação Rick and Morty API. Atualmente, ele foca somente na camada de apresentação, permitindo que o usuário explore informações dos personagens da série como nome, localização, espécie e genêro. Permite também que o usuario faça seu cadastro, login e mude suas informações como nome, e-mail e senha.
+This project is the frontend interface for the Rick and Morty API application. Currently, it focuses solely on the presentation layer, allowing users to explore character information such as name, location, species, and gender. It also enables users to register, log in, and update their information (name, email, and password).
 
-## Tecnologias Utilizadas
+## Technologies Used
 
-- **React** – Biblioteca para criação de interfaces dinâmicas e componentizadas.
-- **TypeScript** – Adiciona tipagem estática ao JavaScript para maior robustez no desenvolvimento.
-- **Tailwind CSS** – Framework utilitário para criação de layouts responsivos e estilizados.
-- **React Router DOM** – Gerenciamento de rotas na aplicação.
-- **Outros Componentes Customizados** – Componentes de UI como Input, Spinner, etc para padronização do design.
+* **React** – A library for building dynamic, component-based user interfaces.
+* **TypeScript** – Adds static typing to JavaScript for increased robustness during development.
+* **Tailwind CSS** – A utility-first CSS framework for creating responsive, styled layouts.
+* **React Router DOM** – Manages client-side routing within the application.
+* **Custom UI Components** – Reusable UI components (Inputs, Spinners, etc.) to standardize the design.
 
-## Pré-requisitos
+## Prerequisites
 
-- [Node.js](https://nodejs.org/) (versão 14 ou superior)
-- [npm](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
+* [Node.js](https://nodejs.org/) (version 14 or higher)
+* [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
 
-Para verificar se o Node.js e o npm estão instalados, utilize os comandos:
+To verify that Node.js and npm are installed, run:
 
 ```bash
 node -v
 npm -v
 ```
 
-## Instalação
+## Installation
 
-1. **Clone o repositório**
-
-   ```bash
-    git clone https://github.com/jp9141joao/rick-and-morty-api.git
-   ```
-
-2. **Acesse a pasta do frontend**
+1. **Clone the repository**
 
    ```bash
-    cd frontend
+   git clone https://github.com/jp9141joao/rick-and-morty-api.git
    ```
 
-3. **Instale as dependências**
-
-   Utilizando npm:
+2. **Navigate to the frontend folder**
 
    ```bash
-    npm install
+   cd frontend
    ```
 
-   Ou, se preferir o Yarn:
+3. **Install dependencies**
+
+   Using npm:
 
    ```bash
-    yarn install
+   npm install
    ```
 
-## Uso
+   Or, if you prefer Yarn:
 
-Para iniciar o servidor de desenvolvimento e visualizar a aplicação em seu navegador, execute:
+   ```bash
+   yarn install
+   ```
+
+## Usage
+
+To start the development server and view the application in your browser, run:
 
 ```bash
-  npm run dev
+npm run dev
 ```
 
-Ou, se estiver usando Yarn:
+Or, if you’re using Yarn:
 
 ```bash
-  yarn dev
+yarn dev
 ```
 
-A aplicação ficará disponível normalmente em [http://localhost:3000](http://localhost:3000) porém a porta pode variar.
+The application will typically be available at [http://localhost:3000](http://localhost:3000), though the port may vary.
 
-## Estrutura do Projeto
+## Project Structure
 
-A seguir, uma visão geral da estrutura do projeto:
+Below is an overview of the project’s folder structure:
 
 ```
 rick-and-morty-api/
 └── frontend/
-    ├── .vite/                  # Diretório de cache do Vite
-    ├── dist/                   # Diretório de build para produção
-    ├── node_modules/           # Dependências instaladas
-    ├── public/                 # Arquivos estáticos e index.html
+    ├── .vite/                  # Vite’s cache directory
+    ├── dist/                   # Production build output
+    ├── node_modules/           # Installed dependencies
+    ├── public/                 # Static files and index.html
     ├── src/
-    │   ├── assets/             # Imagens e outros recursos
-    │   ├── components/         # Componentes reutilizáveis (layouts, botões, inputs, etc.)
-    │   │   ├── PageLayout/
-    │   │   ├── RotaProtegida/
-    │   │   ├── ui/
-    │   │   ├── VerificarToken/
-    │   │   ├── Creditos.tsx
-    │   │   └── Voltar.tsx
-    │   ├── hooks/              # Hooks customizados
-    │   │   └── use-toast.ts
-    │   ├── lib/                # Funções utilitárias
+    │   ├── assets/             # Images and other resources
+    │   ├── components/         # Reusable components (layouts, buttons, inputs, etc.)
+    │   │   ├── PageLayout/     # Layout wrapper component
+    │   │   ├── RotaProtegida/  # “ProtectedRoute” component
+    │   │   ├── ui/             # Generic UI elements (Input, Spinner, etc.)
+    │   │   ├── VerificarToken/ # “VerifyToken” component
+    │   │   ├── Creditos.tsx    # Credits component
+    │   │   └── Voltar.tsx      # Back button component
+    │   ├── hooks/              # Custom React hooks
+    │   │   └── use-toast.ts     # Hook for toast notifications
+    │   ├── lib/                # Utility functions
     │   │   └── utils.ts
-    │   ├── pages/              # Páginas (cadastrar, central, entrar, início, página não encontrada, etc.)
-    │   │   ├── cadastrar.tsx
-    │   │   ├── central.tsx
-    │   │   ├── entrar.tsx
-    │   │   ├── inicio.tsx
-    │   │   └── paginaNaoEncontrada.tsx
-    │   ├── service/            # Serviços de integração com a API
-    │   ├── types/              # Definições de tipos TypeScript
+    │   ├── pages/              # Page components (register, dashboard, login, home, 404, etc.)
+    │   │   ├── cadastrar.tsx            # “register” page
+    │   │   ├── central.tsx              # “dashboard” page
+    │   │   ├── entrar.tsx               # “login” page
+    │   │   ├── inicio.tsx               # “home” page
+    │   │   └── paginaNaoEncontrada.tsx  # “pageNotFound” page
+    │   ├── service/            # API integration services
+    │   ├── types/              # TypeScript type definitions
     │   ├── app.css
-    │   ├── app.tsx             # Componente raiz da aplicação
+    │   ├── app.tsx             # Root component of the application
     │   ├── index.css
     │   ├── main.tsx
     │   └── vite-env.d.ts
@@ -108,34 +108,33 @@ rick-and-morty-api/
     ├── eslint.config.js
     ├── index.html
     ├── package-lock.json
-    ├── package.json            # Configurações do projeto e dependências
+    ├── package.json            # Project configuration and dependencies
     ├── postcss.config.js
-    ├── tailwind.config.js      # Configuração do Tailwind CSS
+    ├── tailwind.config.js      # Tailwind CSS configuration
     ├── ts.config.app.json
     ├── tsconfig.json
     ├── tsconfig.node.json
     └── vite.config.ts
 ```
 
-## Comandos Úteis
+## Useful Commands
 
-- **Instalar dependências:**  
-  `npm install` ou `yarn install`
+* **Install dependencies:**
+  `npm install` or `yarn install`
 
-- **Iniciar o servidor de desenvolvimento:**  
-  `npm run dev` ou `yarn dev`
+* **Start the development server:**
+  `npm run dev` or `yarn dev`
 
-- **Build para produção:**  
-  `npm run build` ou `yarn build`
+* **Build for production:**
+  `npm run build` or `yarn build`
 
-## Observações
+## Notes
 
-- **API Externa:**  
-  Este frontend consome dados da [Rick and Morty API](https://rickandmortyapi.com/). Certifique-se de que seu dispositivo possua conexão com a internet para que os dados sejam carregados corretamente.
+* **External API:**
+  This frontend consumes data from the [Rick and Morty API](https://rickandmortyapi.com/). Make sure your device has an active internet connection so that character data can load correctly.
 
-- **Atenção à URL do Backend:**  
-  Caso o backend seja executado localmente ou em algum outro local, **lembre-se de alterar a URL base configurada no arquivo de serviços (service)** para apontar para o seu servidor local. Por exemplo, se o backend estiver rodando em `http://localhost:3001`, ajuste a URL no service para refletir essa alteração.
+* **Backend URL:**
+  If the backend is running locally or on a different host, remember to update the base URL in the service configuration file to point to your server. For example, if your backend runs at `http://localhost:3001`, adjust the URL in the service accordingly.
 
-- **Customizações:**  
-  Caso necessite de ajustes na estilização, verifique o arquivo `tailwind.config.js` e os componentes presentes na pasta `src/components/`.
-
+* **Customizations:**
+  If you need to tweak the styling, check the `tailwind.config.js` file and the components in the `src/components/` folder.

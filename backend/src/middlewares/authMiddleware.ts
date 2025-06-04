@@ -1,50 +1,46 @@
-// Traz as funções e tipos que vamos usar do Express, JWT e dotenv
-import { Request, Response, NextFunction } from 'express';
-import jwt, { JwtPayload } from 'jsonwebtoken';
-import dotenv from 'dotenv';
-import { HttpResult } from '../models/http-result';
+import { Request, Response, NextFunction } from 'express'; // Imports Express types to manage HTTP requests, responses, and next function.
+import jwt, { JwtPayload } from 'jsonwebtoken'; // Imports JWT library and JwtPayload type for token handling.
+import dotenv from 'dotenv'; // Imports dotenv to load environment variables.
+import { HttpResult } from '../models/http-result'; // Imports HttpResult model to standardize HTTP responses.
 
-// Carrega as variáveis definidas no arquivo .env
-dotenv.config();
+dotenv.config(); // Loads variables defined in the .env file.
 
-// Pega a chave secreta do env.
-const SECRET_KEY = process.env.SECRET_KEY;
+const SECRET_KEY = process.env.SECRET_KEY; // Retrieves the secret key from environment variables.
 
-// Se não existir uma SECRET_KEY, lanca um erro informando.
 if (!SECRET_KEY) {
-    throw new Error("SECRET_KEY não está definido no arquivo .env!");
+  // Throws an error if SECRET_KEY is not defined.
+  throw new Error("SECRET_KEY is not defined in the .env file!");
 }
 
-// Esse middleware é para garantir que só usuários com token válido acessem determinada rota
+// Middleware to ensure only users with a valid token can access certain routes.
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-    // Pega o cabeçalho da request no qual contém o token passado pelo frontend.
-    const authHeader = req.headers['authorization'];
+  // Retrieves the Authorization header containing the token sent by the frontend.
+  const authHeader = req.headers['authorization'];
 
-    // Se não tiver o cabeçalho, mostra erro dizendo que o token não foi enviado.
-    if (!authHeader) {
-        throw new Error("Acesso negado, token não fornecido!");
-    }
+  // If the header is missing, throw an error indicating no token was provided.
+  if (!authHeader) {
+    throw new Error("Access denied, token not provided!");
+  }
 
-    // Se o token vem no formato "Bearer token", aqui pegamos só o token mesmo poe meio do split
-    // que divide a string em um vetor de duas string, entao ele pega a primeira posicao desse vetor, que e o token.
-    const token = authHeader.split(' ')[1];
+  // If the token comes in the format "Bearer <token>", split to get only the token part.
+  const token = authHeader.split(' ')[1];
 
-    // Se depois de pegar não houver token, mostra erro de novo.
-    if (!token) {
-        throw new Error("Acesso negado, token não fornecido!");
-    }
+  // If no token is found after splitting, throw an error indicating no token was provided.
+  if (!token) {
+    throw new Error("Access denied, token not provided!");
+  }
 
-    try {
-        // Verifica se o token é válido usando a chave secreta
-        const decoded = jwt.verify(token, SECRET_KEY) as JwtPayload;
+  try {
+    // Verifies if the token is valid using the secret key.
+    const decoded = jwt.verify(token, SECRET_KEY) as JwtPayload;
 
-        // Se for válido, guarda os dados do usuário na requisição para usar depois
-        (req as any).user = decoded;
+    // If valid, stores the decoded user data in the request object for later use.
+    (req as any).user = decoded;
 
-        // Continua para o próximo passo ou rota
-        next();
-    } catch (error: any) {
-        // Se algo der errado na verificação, retorna uma resposta de erro
-        res.status(400).json(HttpResult.Fail("Ocorreu um erro inesperado no authMiddleware"));
-    }
-}
+    // Proceeds to the next middleware or route handler.
+    next();
+  } catch (error: any) {
+    // If verification fails, returns a 400 response with an error message.
+    res.status(400).json(HttpResult.Fail("An unexpected error occurred in authMiddleware"));
+  }
+};
